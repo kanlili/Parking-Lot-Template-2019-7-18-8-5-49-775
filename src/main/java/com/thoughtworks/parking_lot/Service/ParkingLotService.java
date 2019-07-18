@@ -9,7 +9,7 @@ public class ParkingLotService {
     @Autowired
     private ParkingLotRepository getParkingLotRepository;
     private ParkingLotRepository parkingLotRepository;
-    public List<ParkingLot> queryParkinglot(Integer page,Integer pageSize){
+    public List<ParkingLot> queryParkinglot(int page,int pageSize){
         return  parkingLotRepository.findAll().subList(page-1,pageSize);
     }
 }

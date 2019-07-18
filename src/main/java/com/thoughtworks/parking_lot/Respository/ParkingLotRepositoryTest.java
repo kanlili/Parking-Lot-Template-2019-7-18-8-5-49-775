@@ -1,5 +1,6 @@
 package com.thoughtworks.parking_lot.Respository;
 
+import com.thoughtworks.parking_lot.Service.ParkingLotService;
 import com.thoughtworks.parking_lot.entity.ParkingLot;
 import com.thoughtworks.parking_lot.model.ParkingLot;
 import org.junit.Test;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
@@ -15,6 +18,8 @@ import static org.junit.Assert.assertEquals;
 public class ParkingLotRepositoryTest {
     @Autowired
     private  ParkingLotRepository parkingLotRepository;
+    @Autowired
+    private  ParkingLotService parkingLotService;
     @Test
     public  void should_return_correct_when_given_one_parkinglot(){
         ParkingLot parkingLot=new ParkingLot("lisi",100,"school");
@@ -28,5 +33,15 @@ public class ParkingLotRepositoryTest {
         parkingLotRepository.deleteById(parkingLot.getId());
         assertEquals(1,parkingLotRepository.findAll().size());
 
+    }
+    @Test
+    public void should_return_pages_when_given_over_pages(){
+        for (int i = 0; i <20 ; i++) {
+            ParkingLot parkingLot=new ParkingLot("lisi",100,"school");
+            parkingLotRepository.save(parkingLot);
+        }
+        List<ParkingLot>parkingLotList=parkingLotRepository.findAll();
+        parkingLotList=parkingLotService.queryParkinglot(1,15);
+        assertEquals(15,parkingLotList.size());
     }
 }

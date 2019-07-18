@@ -18,7 +18,8 @@ public class ParkingLotController {
         return  parkingLotRepository.save(parkingLot);
     }
     @GetMapping(params = {"page","pageSize"})
-    public List<ParkingLot> getParkinglot(@RequestParam Integer page,@RequestParam Integer pageSize){
+    public List<ParkingLot> getParkinglot(@RequestParam int page,@RequestParam int pageSize){
      return  parkingLotService.queryParkinglot(page,pageSize);
+
     }
 }
