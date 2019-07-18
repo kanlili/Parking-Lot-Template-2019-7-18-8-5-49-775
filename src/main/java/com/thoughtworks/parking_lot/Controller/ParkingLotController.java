@@ -20,6 +20,9 @@ public class ParkingLotController {
     @GetMapping(params = {"page","pageSize"})
     public List<ParkingLot> getParkinglot(@RequestParam int page,@RequestParam int pageSize){
      return  parkingLotService.queryParkinglot(page,pageSize);
-
+    }
+    @GetMapping("/{name}")
+    public ParkingLot getParkinglot(@PathVariable String name){
+         return parkingLotRepository.findByName(name);
     }
 }

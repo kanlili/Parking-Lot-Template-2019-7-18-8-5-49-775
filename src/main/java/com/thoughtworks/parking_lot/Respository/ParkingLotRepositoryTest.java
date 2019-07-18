@@ -44,4 +44,11 @@ public class ParkingLotRepositoryTest {
         parkingLotList=parkingLotService.queryParkinglot(1,15);
         assertEquals(15,parkingLotList.size());
     }
+    @Test
+    public void should_return_name_when_given_name(){
+        ParkingLot parkingLotone=new ParkingLot("zhangliu",100,"schools");
+        parkingLotRepository.save(parkingLotone);
+        ParkingLot parkingLot=parkingLotRepository.findByName(parkingLotone.getName());
+        assertEquals(100,parkingLot.getCapacity());
+    }
 }
