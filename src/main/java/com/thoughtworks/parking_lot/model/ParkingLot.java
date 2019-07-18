@@ -1,7 +1,7 @@
 package com.thoughtworks.parking_lot.model;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import javax.persistence.Column;
+import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -16,9 +16,19 @@ public class ParkingLot{
   private String name;
   private Integer capacity;
   private String location;
-
+  @OneToMany(cascade = CascadeType.ALL)
+  @JoinColumn(name = "park")
+  private List<ParkingOrder> parkingOrders;
     public Integer getId() {
         return id;
+    }
+
+    public List<ParkingOrder> getParkingOrders() {
+        return parkingOrders;
+    }
+
+    public void setParkingOrders(List<ParkingOrder> parkingOrders) {
+        this.parkingOrders = parkingOrders;
     }
 
     public void setId(Integer id) {
