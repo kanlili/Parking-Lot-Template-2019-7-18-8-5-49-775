@@ -18,7 +18,15 @@ public class ParkingLotRepositoryTest {
     @Test
     public  void should_return_correct_when_given_one_parkinglot(){
         ParkingLot parkingLot=new ParkingLot("lisi",100,"school");
-        parkingLotRepository.save(parkingLot);
+        PparkingLotRepository.save(parkingLot);
         assertEquals(1,parkingLotRepository.findAll().size());
+    }
+    @Test
+    public  void should_return_when_delete_parkinglot(){
+        ParkingLot parkingLot=new ParkingLot("zhangsan",10,"schools");
+        parkingLot=parkingLotRepository.save(parkingLot);
+        parkingLotRepository.deleteById(parkingLot.getId());
+        assertEquals(1,parkingLotRepository.findAll().size());
+
     }
 }
