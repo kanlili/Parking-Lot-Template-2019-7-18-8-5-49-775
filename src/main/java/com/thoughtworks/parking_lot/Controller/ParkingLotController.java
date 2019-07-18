@@ -1,15 +1,24 @@
 package com.thoughtworks.parking_lot.Controller;
 
 import com.thoughtworks.parking_lot.Respository.ParkingLotRepository;
+import com.thoughtworks.parking_lot.Service.ParkingLotService;
 import com.thoughtworks.parking_lot.model.ParkingLot;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/parkinglot")
 public class ParkingLotController {
     @Autowired
     private ParkingLotRepository parkingLotRepository;
+    @Autowired
+    private ParkingLotService parkingLotService;
     @PostMapping
     public ParkingLot addParkinglot(@RequestBody ParkingLot parkingLot){
         return  parkingLotRepository.save(parkingLot);
+    }
+    @GetMapping(params = {"page","pageSize"})
+    public List<ParkingLot> getParkinglot(@RequestParam Integer page,@RequestParam Integer pageSize){
+     return  parkingLotService.queryParkinglot(page,pageSize);
     }
 }
