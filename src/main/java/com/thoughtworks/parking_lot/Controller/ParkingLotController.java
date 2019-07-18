@@ -25,4 +25,8 @@ public class ParkingLotController {
     public ParkingLot getParkinglot(@PathVariable String name){
          return parkingLotRepository.findByName(name);
     }
+    @GetMapping
+    public void updateCapacity(@RequestBody ParkingLot parkingLot){
+         parkingLotService.addCapacity(parkingLot);
+    }
 }

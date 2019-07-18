@@ -12,4 +12,9 @@ public class ParkingLotService {
     public List<ParkingLot> queryParkinglot(int page,int pageSize){
         return  parkingLotRepository.findAll().subList(page-1,pageSize);
     }
+    public  void addCapacity(ParkingLot parkingLot){
+        ParkingLot parkingLotone=new ParkingLot("zhangqi",100,"park");
+        parkingLotone.setCapacity(parkingLot.getCapacity());
+        parkingLotRepository.save(parkingLotone);
+    }
 }

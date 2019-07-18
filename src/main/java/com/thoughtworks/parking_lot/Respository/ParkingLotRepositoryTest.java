@@ -51,4 +51,11 @@ public class ParkingLotRepositoryTest {
         ParkingLot parkingLot=parkingLotRepository.findByName(parkingLotone.getName());
         assertEquals(100,parkingLot.getCapacity());
     }
+    @Test
+    public void should_return_update_capacity_when_given_new_capacity(){
+        ParkingLot parkingLotone=new ParkingLot("zhangqi",100,"park");
+        parkingLotone.setCapacity(parkingLotone.getCapacity()+1);
+        parkingLotRepository.save(parkingLotone);
+        assertEquals(101,parkingLotRepository.findByName("zhangqi").getCapacity());
+    }
 }
