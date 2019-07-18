@@ -17,4 +17,5 @@ public class ParkingLotService {
         parkingLotone.setCapacity(parkingLot.getCapacity());
         parkingLotRepository.save(parkingLotone);
     }
+
 }

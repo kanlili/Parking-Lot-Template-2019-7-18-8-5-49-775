@@ -29,4 +29,5 @@ public class ParkingLotController {
     public void updateCapacity(@RequestBody ParkingLot parkingLot){
          parkingLotService.addCapacity(parkingLot);
     }
+
 }
