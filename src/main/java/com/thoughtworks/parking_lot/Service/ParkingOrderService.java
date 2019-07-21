@@ -14,17 +14,11 @@ import java.util.List;
 public class ParkingOrderService {
     @Autowired
     private ParkingOrderRepository parkingOrderRepository;
-    public List<ParkingOrder> deleteOrder(String number){
-         int id;
-         for(ParkingOrder parkingOrder:parkingOrderRepository.findAll()){
-             if(parkingOrder.getNumber()==number){
-                 id=parkingOrder.getId();
-             }
-         }
-        parkingOrderRepository.findById(id).get().setEndTime(new Date()) ;
-        parkingOrderRepository.findById(id).get().setStatus(false);
-        return  parkingOrderRepository.findAll();
 
-
-     }
+    public ParkingOrder deleteOrder(String number){
+        ParkingOrder parkingOrder= parkingOrderRepository.findByCarNumber(number);
+        parkingOrder.setEndTime(new Date());
+        parkingOrder.setStatus(false);
+        return parkingOrder;
+    }
 }

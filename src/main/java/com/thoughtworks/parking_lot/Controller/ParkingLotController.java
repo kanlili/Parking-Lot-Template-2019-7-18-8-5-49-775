@@ -3,6 +3,8 @@ package com.thoughtworks.parking_lot.Controller;
 import com.thoughtworks.parking_lot.Respository.ParkingLotRepository;
 import com.thoughtworks.parking_lot.Service.ParkingLotService;
 import com.thoughtworks.parking_lot.model.ParkingLot;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 

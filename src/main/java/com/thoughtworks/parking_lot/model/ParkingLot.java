@@ -4,6 +4,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.List;
 
 
 @SpringBootApplication

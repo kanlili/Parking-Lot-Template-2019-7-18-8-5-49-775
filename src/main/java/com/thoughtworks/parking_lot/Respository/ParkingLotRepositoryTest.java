@@ -1,7 +1,7 @@
 package com.thoughtworks.parking_lot.Respository;
 
 import com.thoughtworks.parking_lot.Service.ParkingLotService;
-import com.thoughtworks.parking_lot.entity.ParkingLot;
+//import com.thoughtworks.parking_lot.entity.ParkingLot;
 import com.thoughtworks.parking_lot.model.ParkingLot;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,8 +11,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
-
+import static org.hamcrest.CoreMatchers.is;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class ParkingLotRepositoryTest {
@@ -23,7 +24,7 @@ public class ParkingLotRepositoryTest {
     @Test
     public  void should_return_correct_when_given_one_parkinglot(){
         ParkingLot parkingLot=new ParkingLot("lisi",100,"school");
-        PparkingLotRepository.save(parkingLot);
+        parkingLotRepository.save(parkingLot);
         assertEquals(1,parkingLotRepository.findAll().size());
     }
     @Test
@@ -49,13 +50,14 @@ public class ParkingLotRepositoryTest {
         ParkingLot parkingLotone=new ParkingLot("zhangliu",100,"schools");
         parkingLotRepository.save(parkingLotone);
         ParkingLot parkingLot=parkingLotRepository.findByName(parkingLotone.getName());
-        assertEquals(100,parkingLot.getCapacity());
+        assertThat(100, is(parkingLot.getCapacity()));
     }
     @Test
     public void should_return_update_capacity_when_given_new_capacity(){
         ParkingLot parkingLotone=new ParkingLot("zhangqi",100,"park");
         parkingLotone.setCapacity(parkingLotone.getCapacity()+1);
         parkingLotRepository.save(parkingLotone);
-        assertEquals(101,parkingLotRepository.findByName("zhangqi").getCapacity());
+
+        assertThat(101,is(parkingLotRepository.findByName("zhangqi").getCapacity()));
     }
 }
