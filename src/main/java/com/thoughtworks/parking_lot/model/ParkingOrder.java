@@ -1,5 +1,7 @@
 package com.thoughtworks.parking_lot.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -13,8 +15,10 @@ public class ParkingOrder {
    @Column
    private  String number;
    @Column
+   @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
    private Date createTime;
    @Column
+   @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
    private  Date endTime;
    @Column(columnDefinition = "open")
     private  boolean status;

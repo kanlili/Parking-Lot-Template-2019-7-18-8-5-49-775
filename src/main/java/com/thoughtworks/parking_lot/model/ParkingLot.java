@@ -4,6 +4,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 
@@ -15,7 +16,10 @@ public class ParkingLot{
   private Integer id;
   @Column(nullable = false)
   private String name;
+  @Column
+  @Min(0)
   private Integer capacity;
+  @Column
   private String location;
   @OneToMany(cascade = CascadeType.ALL)
   @JoinColumn(name = "park")
